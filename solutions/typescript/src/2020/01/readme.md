@@ -1,1 +1,0 @@
-../../../../resources/2020/01/readme.md
