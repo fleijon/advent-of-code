@@ -64,13 +64,13 @@ var read = function (year, day, file) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    baseUrl = "../../resources/" + year + "/" + (day < 10 ? '0' + day : day) + "/";
+                    baseUrl = "../../resources/".concat(year, "/").concat(day < 10 ? '0' + day : day, "/");
                     return [4 /*yield*/, Promise.all([
-                            fs_1.promises.readFile("" + baseUrl + file, {
+                            fs_1.promises.readFile("".concat(baseUrl).concat(file), {
                                 encoding: 'utf-8',
                             }),
                             fs_1.promises
-                                .readFile("" + baseUrl + file.split(/(.*)\..*/)[1] + ".args.json", {
+                                .readFile("".concat(baseUrl).concat(file.split(/(.*)\..*/)[1], ".args.json"), {
                                 encoding: 'utf-8',
                             })
                                 .catch(function () { return undefined; }),

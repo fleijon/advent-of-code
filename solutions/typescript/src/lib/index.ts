@@ -36,7 +36,7 @@ export const split = (input: string, emptyLines = false): string[] => {
 export const read =
 	<A>(year: number, day: number, file = 'input.txt') =>
 	async (): Promise<Input<string, A>> => {
-		const baseUrl = `../../../../resources/${year}/${day < 10 ? '0' + day : day}/`;
+		const baseUrl = `../../resources/${year}/${day < 10 ? '0' + day : day}/`;
 
 		const [input, args] = await Promise.all([
 			promises.readFile(`${baseUrl}${file}`, {

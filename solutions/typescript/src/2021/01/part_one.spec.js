@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var lib_1 = require("../../lib");
+var part_one_1 = require("./part_one");
 var chai_1 = require("chai");
 var _1 = require(".");
-var part_one_1 = require("./part_one");
-describe("2020 - Day 1 - Part One", function () {
+var index_1 = require("../../lib/index");
+describe('2021 - Day 1 - Part One', function () {
     it("should resolve to ".concat(_1.results.one.input, " when using the input"), function () { return __awaiter(void 0, void 0, void 0, function () {
         var _a, _b;
         return __generator(this, function (_c) {
@@ -48,25 +48,10 @@ describe("2020 - Day 1 - Part One", function () {
                 case 0:
                     _a = chai_1.expect;
                     _b = part_one_1.runner;
-                    return [4 /*yield*/, (0, lib_1.read)(_1.year, _1.day)()];
+                    return [4 /*yield*/, (0, index_1.read)(_1.year, _1.day, "example.1.txt")()];
                 case 1: return [4 /*yield*/, _b.apply(void 0, [(_c.sent()).input])];
                 case 2:
-                    _a.apply(void 0, [_c.sent()]).to.equal(_1.results.one.input);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should be that that the first example resolves to 514579', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _a = chai_1.expect;
-                    _b = part_one_1.runner;
-                    return [4 /*yield*/, (0, lib_1.read)(_1.year, _1.day, 'example.1.txt')()];
-                case 1: return [4 /*yield*/, _b.apply(void 0, [(_c.sent()).input])];
-                case 2:
-                    _a.apply(void 0, [_c.sent()]).to.equal(514579);
+                    _a.apply(void 0, [_c.sent()]).to.equal(7);
                     return [2 /*return*/];
             }
         });

@@ -36,39 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var lib_1 = require("../../lib");
-var chai_1 = require("chai");
+exports.runner = void 0;
+var lib_1 = require("./../../lib/");
 var _1 = require(".");
-var part_one_1 = require("./part_one");
-describe("2020 - Day 1 - Part One", function () {
-    it("should resolve to ".concat(_1.results.one.input, " when using the input"), function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _a = chai_1.expect;
-                    _b = part_one_1.runner;
-                    return [4 /*yield*/, (0, lib_1.read)(_1.year, _1.day)()];
-                case 1: return [4 /*yield*/, _b.apply(void 0, [(_c.sent()).input])];
-                case 2:
-                    _a.apply(void 0, [_c.sent()]).to.equal(_1.results.one.input);
+var runner = function (input) {
+    var numbers = (0, lib_1.split)(input).map(function (line) { return parseInt(line, 10); });
+    var current = numbers[0];
+    var counter = 0;
+    for (var index = 1; index < numbers.length; index++) {
+        var number = numbers[index];
+        if (current < number) {
+            counter++;
+        }
+        current = number;
+    }
+    return counter;
+};
+exports.runner = runner;
+if (require.main === module) {
+    (function () { return __awaiter(void 0, void 0, void 0, function () {
+        var input, value;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, lib_1.read)(_1.year, _1.day)()];
+                case 1:
+                    input = _a.sent();
+                    value = (0, exports.runner)(input.input);
+                    console.log('Result: ${value}.');
                     return [2 /*return*/];
             }
         });
-    }); });
-    it('should be that that the first example resolves to 514579', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _a = chai_1.expect;
-                    _b = part_one_1.runner;
-                    return [4 /*yield*/, (0, lib_1.read)(_1.year, _1.day, 'example.1.txt')()];
-                case 1: return [4 /*yield*/, _b.apply(void 0, [(_c.sent()).input])];
-                case 2:
-                    _a.apply(void 0, [_c.sent()]).to.equal(514579);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-});
+    }); })();
+}
