@@ -72,8 +72,8 @@ const isBingo = (board: board) : boolean => {
 	return false;
 }
 
-export const runner = (input: Input<string, args>): number => {
-	const c = split(input.input);
+const prepareBoards = (input: string) : board[] =>  {
+	const c = split(input);
 	const boardSize = 5;
 	const nMarkers = boardSize*boardSize;
 	const inputValues = c.map( v => v.split(' ').map( r => parseInt(r))).flat().filter(v => !Number.isNaN(v));
@@ -85,6 +85,11 @@ export const runner = (input: Input<string, args>): number => {
 		} as board);
 	}
 
+	return boards;
+}
+
+export const runner = (input: Input<string, args>): number => {
+	const boards = prepareBoards(input.input);
 	for (let index = 0; index < input.args!.draws.length; index++) {
 		const drawnNumber = input.args!.draws[index];
 		for (let index = 0; index < boards.length; index++) {

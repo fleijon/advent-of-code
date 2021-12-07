@@ -7,10 +7,8 @@ export const runner = (input: string): number => {
         (idx > arr.length - 3) ? [] :
                                  [arr.slice(idx, idx + 3)]
     );
-    console.log(windows);
     const sums = windows
         .map((v: number[]) => v.reduce((p, v) => p + v, 0));
-    console.log(sums);
     return sums.map((v: number, idx : number, arr: number[]) : number =>
         (idx == 0)       ? 0 :
         (arr[idx-1] < v) ? 1 :

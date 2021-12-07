@@ -9,7 +9,7 @@ export const results: DayResults = {
         example: 4512
 	},
     two: {
-        input: undefined,
-        example: undefined
+        input: 2634,
+        example: 1924
     }
 };
