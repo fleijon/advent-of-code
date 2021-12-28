@@ -1,0 +1,7 @@
+[package]
+name = "utillib"
+version = "0.1.0"
+
+[lib]
+name = "utillib"
+path = "./utillib.rs"
