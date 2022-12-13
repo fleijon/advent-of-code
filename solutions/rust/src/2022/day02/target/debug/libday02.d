@@ -1,0 +1,1 @@
+/home/fredrik/source/advent-of-code/advent-of-code/solutions/rust/src/2022/day02/target/debug/libday02.rlib: /home/fredrik/source/advent-of-code/advent-of-code/solutions/rust/src/2022/day02/src/lib.rs
