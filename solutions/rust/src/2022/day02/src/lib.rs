@@ -4,8 +4,16 @@ use std::str;
 pub const SAMPLE_FILE: &str = "../../../../../resources/2022/02/example.1.txt";
 pub const INPUT_FILE: &str = "../../../../../resources/2022/02/input.1.txt";
 
+#[derive(Debug, Copy, Clone)]
 pub struct Sign {
     pub value: i32
+}
+
+#[derive(PartialEq, Clone, Copy)]
+pub enum Outcome {
+    Win,
+    Lose,
+    Draw
 }
 
 pub const DRAW: i32 = 3;
@@ -32,14 +40,46 @@ fn get_scores(pairs: &Vec<(Sign, Sign)>) -> impl Iterator<Item=i32> + '_{
                 .map(|v| (result(&v.0,&v.1) + v.1.value));
 }
 
+pub fn infer_pairing_sign(opponent: &Sign, outcome: Outcome) -> Sign {
+    if outcome == Outcome::Lose {
+        match opponent.value {
+            ROCK => Sign { value: SCISSOR },
+            PAPER => Sign { value: ROCK },
+            SCISSOR => Sign { value: PAPER },
+            _ => todo!(),
+        }
+    }else if outcome == Outcome::Win {
+        match opponent.value {
+            ROCK => Sign { value: PAPER },
+            PAPER => Sign { value: SCISSOR },
+            SCISSOR => Sign { value: ROCK },
+            _ => todo!(),
+        }
+    }else{
+        return Sign { value: opponent.value };
+    }
+}
+
 pub fn calculate_score(pairs: &Vec<(Sign, Sign)>) -> i32 {
     return get_scores(pairs).sum();
 }
 
 pub fn parse_to_sign_pairs(content: &String) -> Vec<(Sign, Sign)> {
     return content.lines()
-                    .map(|v| parse_row(v))
-                    .collect();
+                  .map(|v| parse_row(v))
+                  .collect();
+}
+
+pub fn map_to_sign_pairs(pairs: &Vec<(Sign, Outcome)>) -> Vec<(Sign, Sign)>{
+    return pairs.iter()
+                .map(|pair| (pair.0.into(), infer_pairing_sign(&pair.0, pair.1)))
+                .collect();
+}
+
+pub fn parse_to_sign_and_outcome(content: &String) -> Vec<(Sign, Outcome)> {
+    return content.lines()
+                  .map(|v| parse_row_2(v))
+                  .collect();
 }
 
 fn parse_row(row: &str) -> (Sign, Sign) {
@@ -51,6 +91,13 @@ fn parse_row(row: &str) -> (Sign, Sign) {
             splitted.remove(0));
 }
 
+fn parse_row_2(row: &str) -> (Sign, Outcome) {
+    let splitted: Vec<&str> = row.split(' ').collect();
+
+    return (parse_to_sign_2(splitted[0]),
+            parse_to_outcome(splitted[1]));
+}
+
 pub fn parse_to_sign(sign: &str) -> Sign {
     match sign {
         "A" => Sign { value: ROCK},
@@ -59,6 +106,25 @@ pub fn parse_to_sign(sign: &str) -> Sign {
         "X" => Sign { value: ROCK},
         "Y" => Sign { value: PAPER },
         "Z" => Sign { value: SCISSOR },
+        &_ => todo!(),
+    }
+}
+
+pub fn parse_to_outcome(outcome: &str) -> Outcome{
+    match outcome {
+        "X" => Outcome::Lose,
+        "Y" => Outcome::Draw,
+        "Z" => Outcome::Win,
+        &_ => todo!(),
+    }
+}
+
+
+pub fn parse_to_sign_2(sign: &str) -> Sign {
+    match sign {
+        "A" => Sign { value: ROCK},
+        "B" => Sign { value: PAPER},
+        "C" => Sign { value: SCISSOR},
         &_ => todo!(),
     }
 }
