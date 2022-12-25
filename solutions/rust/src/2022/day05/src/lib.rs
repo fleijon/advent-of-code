@@ -1,8 +1,8 @@
 extern crate utils;
 
-pub const MOVE_IDX: usize = 5;
-pub const FROM_IDX: usize = 12;
-pub const TO_IDX: usize = 17;
+pub const MOVE_IDX: usize = 1;
+pub const FROM_IDX: usize = 3;
+pub const TO_IDX: usize = 5;
 
 pub const SAMPLE_FILE: &str = "../../../../../resources/2022/05/example.1.txt";
 pub const INPUT_FILE: &str = "../../../../../resources/2022/05/input.1.txt";
@@ -66,14 +66,14 @@ fn read_stacks(stack_content: &str, stacks: &mut Vec<Stack>) {
 
 pub fn read_moves(moves_content: &str, moves: &mut Vec<Move>) {
      for line in moves_content.lines() {
-        let chars: Vec<char> = line.chars().collect();
-        let amount = chars[MOVE_IDX].to_string().parse::<u32>().unwrap();
-        let from_result = chars[FROM_IDX].to_string().parse::<usize>();
+        let values = line.split(" ").collect::<Vec<&str>>();
+        let amount = values[MOVE_IDX].to_string().parse::<u32>().unwrap();
+        let from_result = values[FROM_IDX].to_string().parse::<usize>();
         let from = match from_result {
             Ok(from) => from,
-            Err(err) => panic!("Problem parsing the char '{:?}'", chars[FROM_IDX])
+            Err(err) => panic!("Problem parsing the char '{:?}'", values[FROM_IDX])
         };
-        let to = chars[TO_IDX].to_string().parse::<usize>().unwrap();
+        let to = values[TO_IDX].to_string().parse::<usize>().unwrap();
         
         let new_move = Move {
             amount: amount,
