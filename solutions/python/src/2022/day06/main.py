@@ -17,15 +17,6 @@ def process_signal(signal: str, u_len: int) -> int:
     
     raise NotImplementedError("No solution was found")
 
-        
-def contains(string: str, char: str) -> bool:
-    for c in string:
-        if(c == char):
-            return True
-    
-    return False
-
-
 if __name__ == "__main__":
     input_data = as_rows(load_input("06", 1))[0]
     answer1 = process_signal(input_data, 4)
