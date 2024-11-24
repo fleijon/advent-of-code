@@ -7,15 +7,14 @@
 #include <functional>
 #include "../logic/day11/day11solver.h"
 
-using solution = std::function<void(const input_format&)>;
-
-void Run(const solution& solution, std::string id)
+template<class T>
+void Run(const std::function<T(const input_format&)>& solution, std::string id)
 {
 	std::string filepath = std::format("../../../../../resources/2022/{}/input.1.txt", id);
 	input_format input;
 
 	auto abs = std::filesystem::absolute(filepath);
-	if (auto canLoad = LoadInput(filepath, ' ', input); !canLoad) {
+	if (auto canLoad = LoadInput(abs.string(), ' ', input); !canLoad) {
 
 		std::cout << "Failed to read file input for day 07!" << std::endl;
 		return;
@@ -137,7 +136,7 @@ void solve_day10_part2(const input_format& input)
 	for (int i = 1; i < 241; i++)
 	{
 		std::cout << crt[i-1];
-		const auto expectedRow = (int)(i / 40);
+		const auto expectedRow = (i / 40);
 		if (row != expectedRow) {
 			row = expectedRow;
 			std::cout << std::endl;
@@ -156,14 +155,14 @@ void solve_day11_part1(const input_format& input)
 }
 
 void main() {
-	Run(solve_day07_part, "07");
-	Run(solve_day07_part2, "07");
-	Run(solve_day08_part1, "08");
-	Run(solve_day08_part2, "08");
-	Run(solve_day09_part1, "09");
-	Run(solve_day09_part2, "09");
-	Run(solve_day10_part1, "10");
-	Run(solve_day10_part2, "10");
-	Run(solve_day11_part1, "11");
+	Run<void>(solve_day07_part, "07");
+	Run<void>(solve_day07_part2, "07");
+	Run<void>(solve_day08_part1, "08");
+	Run<void>(solve_day08_part2, "08");
+	Run<void>(solve_day09_part1, "09");
+	Run<void>(solve_day09_part2, "09");
+	Run<void>(solve_day10_part1, "10");
+	Run<void>(solve_day10_part2, "10");
+	Run<void>(solve_day11_part1, "11");
 	std::cin.get();
 }

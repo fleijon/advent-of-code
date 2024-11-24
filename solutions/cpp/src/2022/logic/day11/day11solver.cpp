@@ -2,7 +2,8 @@
 #include "day11solver.h"
 #include <algorithm>
 
-bool replace(std::string& str, const std::string& from, const std::string& to) {
+bool replace(std::string& str, const std::string_view from, const std::string_view to)
+{
     size_t start_pos = str.find(from);
     if(start_pos == std::string::npos)
         return false;
@@ -16,15 +17,14 @@ bool ParseInput(const input_format& input, std::vector<Monkey>& monkeys)
 	{
 		if (!input[i].empty() && input[i][0].starts_with("Monkey"))
 		{
-			int monkey = std::stoi(input[i][1]);
 			std::vector<int> items;
 
 			i++;
 			// items
-			for (int j = 4; j < input[i].size(); j++) // Why 4? Should not the iteration start at 3, if we count the first item in list as empty string? Or do we start with two empty strings
+			for (int j = 4; j < input[i].size(); j++)
 			{
 				auto value = input[i][j];
-				const auto c = replace(value, ",", "");
+				replace(value, ",", "");
 				items.emplace_back(std::stoi(value));
 			}
 			i++;
@@ -97,24 +97,24 @@ int CalculateMonkeyBusiness(std::vector<Monkey>& monkeys)
 			auto& monkey = monkeys[m];
 			for (auto item : monkey.Items)
 			{
-				auto newItemValue = monkey.Operation(item)/3;
+				auto newItemValue = (int)(monkey.Operation(item)/3.0);
 				auto passToMonkey = monkey.MonkeySelector(newItemValue);
 
 				if (passToMonkey == m)
 				{
-					throw new std::domain_error("Did not expect monkey to throw to himself");
+					throw new std::domain_error("Did not expect monkey to throw to itself");
 				}
 
 				monkeys[passToMonkey].Items.emplace_back(newItemValue);
 
 				++inspectCount[m];
 			}
+
 			monkey.Items.clear();
 		}
-
 	}
 
-	std::ranges::sort(inspectCount.begin(), inspectCount.end(), [](int a, int b) {return a > b; });
+	std::ranges::sort(inspectCount.begin(), inspectCount.end(), [](int a, int b) { return a > b; });
 
 	return inspectCount[0] * inspectCount[1];
 }

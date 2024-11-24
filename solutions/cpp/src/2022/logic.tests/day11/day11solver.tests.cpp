@@ -17,7 +17,7 @@ namespace logictests
 			input_format input;
 
 			auto abs = std::filesystem::absolute(filepath);
-			auto canLoadInput = LoadInput(filepath, ' ', input);
+			auto canLoadInput = LoadInput(abs.string(), ' ', input);
 			Assert::IsTrue(canLoadInput);
 
 			std::vector<Monkey> monkeys;
@@ -30,7 +30,7 @@ namespace logictests
 			input_format input;
 
 			auto abs = std::filesystem::absolute(filepath);
-			auto canLoadInput = LoadInput(filepath, ' ', input);
+			auto canLoadInput = LoadInput(abs.string(), ' ', input);
 			Assert::IsTrue(canLoadInput);
 
 			std::vector<Monkey> monkeys;
