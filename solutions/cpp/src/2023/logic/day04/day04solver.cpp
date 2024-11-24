@@ -1,4 +1,5 @@
 #include "day04solver.h"
+#include <algorithm>
 
 struct Card
 {
@@ -12,29 +13,28 @@ std::vector<int> ToIntList(const std::string& input)
 	split(input, ' ', target);
 
 	std::vector<int> output;
-	for (auto i = 0; i < target.size(); i++)
-	{
-		if (!target[i].empty() && isdigit(target[i][0]))
-		{
-			output.push_back(std::stoi(target[i]));
-		}
-	}
+
+	std::ranges::for_each(target.cbegin(), target.cend(), [&](std::string val) {
+			if (!val.empty() && isdigit(val[0]))
+			{
+				output.emplace_back(std::stoi(val));
+			}
+		});
 
 	return output;
 }
 
 void FillCards(const input_format& input, std::vector<Card>& cards)
 {
-	for (auto i = 0; i < input.size(); i++)
-	{
-		const auto& row = input[i][1];
-		std::vector<std::string> target;
-		split(row, '|', target);
-		const auto& winnings = target[0];
-		const auto& my = target[1];
+	std::ranges::for_each(input.cbegin(), input.cend(), [&](std::vector<std::string> val) {
+			const auto& row = val[1];
+			std::vector<std::string> target;
+			split(row, '|', target);
+			const auto& winnings = target[0];
+			const auto& my = target[1];
 
-		cards.emplace_back(ToIntList(winnings), ToIntList(my));
-	}
+			cards.emplace_back(ToIntList(winnings), ToIntList(my));
+		});
 }
 
 int score(const Card& card)
@@ -63,7 +63,6 @@ int score2(const Card& card)
 	}
 
 	return res;
-
 }
 
 int SolveDay04Part1(const input_format& input)

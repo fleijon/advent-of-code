@@ -36,8 +36,8 @@ void Run(const std::function<T(const input_format&)>& solution, std::string id, 
 
 void print_solution(const std::string& day, const std::string& part, int solution)
 {
-	std::cout << "Solution day " << day << "part" << part << ": " << std::endl;
-	std::cout << solution << std::endl;
+	std::cout << "Solution day " << day << " part " << part << ": " << std::endl;
+	std::cout << solution << std::endl << std::endl;
 }
 
 void solveDay01(const input_format& input)

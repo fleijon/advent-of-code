@@ -72,7 +72,8 @@ void get_partial_sums(int i, int j, const input_format& input, std::vector<int>&
 				for (auto k = 0; k < parts.size(); k++)
 				{
 					auto r = (parts.size()-1) - k;
-					partSum += std::pow(10, r) * parts[k];
+					auto part = std::pow(10, r) * parts[k]; 
+					partSum += (int)std::round(part);
 				}
 
 				partialSums.push_back(partSum);
