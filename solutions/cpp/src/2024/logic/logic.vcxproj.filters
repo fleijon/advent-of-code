@@ -15,42 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="utils\preprocess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="day01\day01solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="day02\day02solver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="day03\day03solver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="day04\day04solver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="day05\day05solver.cpp">
+    <ClCompile Include="utils\preprocess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="utils\preprocess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="day01\day01solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="day02\day02solver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="day03\day03solver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="day04\day04solver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="day05\day05solver.h">
+    <ClInclude Include="utils\preprocess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

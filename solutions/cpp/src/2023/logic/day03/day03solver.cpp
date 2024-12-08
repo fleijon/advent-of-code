@@ -27,12 +27,12 @@ void get_partial_sum_back(int i, const std::string& row, std::vector<int>& parts
 		get_partial_sum_back(i-1, row, parts);
 	}
 
-	parts.push_back(row[i] - '0');
+	parts.emplace_back(row[i] - '0');
 }
 
 void get_partial_sum_forward(int i, const std::string& row, std::vector<int>& parts)
 {
-	parts.push_back(row[i] - '0');
+	parts.emplace_back(row[i] - '0');
 
 	if (i < row.size() - 1 && isdigit(row[i+1]))
 	{
@@ -76,7 +76,7 @@ void get_partial_sums(int i, int j, const input_format& input, std::vector<int>&
 					partSum += (int)std::round(part);
 				}
 
-				partialSums.push_back(partSum);
+				partialSums.emplace_back(partSum);
 			}
 		}
 	}
@@ -86,8 +86,9 @@ void get_uniques(const std::vector<int>& source, std::vector<int>& target)
 {
 	for (auto ele : source)
 	{
-		if (std::ranges::find(target.cbegin(), target.cend(), ele) == target.cend()) {
-			target.push_back(ele);
+		auto lastIter = target.cend();
+		if (std::ranges::find(target.cbegin(), target.cend(), ele) == lastIter) {
+			target.emplace_back(ele);
 		}
 	}
 }
@@ -209,7 +210,7 @@ void get_coords(std::string_view row, std::vector<NumberCoord>& coords, int y, c
 
 				a.isAdjacent = isAdj;
 
-				coords.push_back(a);
+				coords.emplace_back(a);
 
 				startx = -1;
 				endx = -1;
@@ -238,7 +239,8 @@ int get_value(std::string_view row, int from, int take)
 	for (auto i = 0; i < take; i++) {
 		auto j = (from+take-1) - i;
 		auto k = row[j];
-		res += std::pow(10, i) * (k - '0');
+		auto val = std::pow(10, i) * (k - '0');
+		res += (int)std::round(val);
 	}
 
 	return res;

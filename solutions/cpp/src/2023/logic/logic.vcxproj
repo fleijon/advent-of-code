@@ -151,6 +151,7 @@
     <ClCompile Include="day02\day02solver.cpp" />
     <ClCompile Include="day03\day03solver.cpp" />
     <ClCompile Include="day04\day04solver.cpp" />
+    <ClCompile Include="day05\day05solver.cpp" />
     <ClCompile Include="utils\preprocess.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,7 +159,7 @@
     <ClInclude Include="day02\day02solver.h" />
     <ClInclude Include="day03\day03solver.h" />
     <ClInclude Include="day04\day04solver.h" />
-    <ClInclude Include="day05\Day05.h" />
+    <ClInclude Include="day05\day05solver.h" />
     <ClInclude Include="utils\preprocess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

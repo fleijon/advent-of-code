@@ -32,11 +32,11 @@ namespace logictests
 				std::ofstream writeFile(tempfile);
 				Assert::IsTrue(writeFile.is_open());
 
-				writeFile << "1 2 3 4 5" << std::endl;
-				writeFile << "1 2 3 4 5" << std::endl;
-				writeFile << "1 2 3 4 5" << std::endl;
-				writeFile << "1 2 3 4 5" << std::endl;
-				writeFile << "1 2 3 4 5" << std::endl;
+				writeFile << "1 2 3 4 5\n";
+				writeFile << "1 2 3 4 5\n";
+				writeFile << "1 2 3 4 5\n";
+				writeFile << "1 2 3 4 5\n";
+				writeFile << "1 2 3 4 5\n";
 			}
 
 			const size_t expectedSize = 5;

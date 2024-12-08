@@ -1,5 +1,10 @@
 #include "day04solver.h"
 #include <algorithm>
+#include <functional>
+#include <iostream>
+#include <numeric>
+#include <string>
+#include <vector>
 
 struct Card
 {
@@ -54,13 +59,12 @@ int score(const Card& card)
 int score2(const Card& card)
 {
 	auto res = 0;
-	for (const auto w : card.WinningNumbers)
-	{
-		if (std::ranges::find(card.MyNumbers.cbegin(), card.MyNumbers.cend(), w) != card.MyNumbers.cend())
-		{
-			res++;
-		}
-	}
+	std::ranges::for_each(card.MyNumbers.cbegin(), card.MyNumbers.cend(), [&](int val) {
+			if (std::ranges::find(card.WinningNumbers.cbegin(), card.WinningNumbers.cend(), val) != card.WinningNumbers.cend())
+			{
+				res++;
+			}
+		});
 
 	return res;
 }
@@ -72,39 +76,36 @@ int SolveDay04Part1(const input_format& input)
 	std::vector<Card> cards;
 	FillCards(input, cards);
 
-	for (const auto& card : cards)
-	{
-		sum += score(card);
-	}
+	std::ranges::for_each(cards.cbegin(), cards.cend(), [&](const Card& card) {
+			sum += score(card);
+		});
 
 	return sum;
 }
 
 void fillScores(const std::vector<Card>& cards, std::vector<int>& cardScores)
 {
-	for (auto i = 0; i < cards.size(); i++)
-	{
-		cardScores[i] = score2(cards[i]);
-	}
+	size_t i = 0;
+	std::ranges::for_each(cards.cbegin(), cards.cend(), [&](const Card& card) {
+			cardScores[i] = score2(card);
+			i++;
+		});
 }
 
 void fillCardCounts(int i, const std::vector<int>& cardScores, std::vector<int>& cardCounts)
 {
 	auto max = cardScores.size();
-	for (; i < max; i++)
+	const auto cardScore = cardScores[i];
+
+	for (auto j = i + 1; j < max && j < i + cardScore + 1; j++)
 	{
-		for (auto j = i + 1; j < max && j < i + cardScores[i] + 1; j++)
-		{
-			fillCardCounts(j, cardScores, cardCounts);
-			cardCounts[j]++;
-		}
+		cardCounts[j]++;
+		fillCardCounts(j, cardScores, cardCounts);
 	}
 }
 
 int SolveDay04Part2(const input_format& input)
 {
-	auto sum = 0;
-
 	std::vector<Card> cards;
 	FillCards(input, cards);
 
@@ -112,12 +113,15 @@ int SolveDay04Part2(const input_format& input)
 	std::vector<int> cardScores(cards.size(), 0);
 
 	fillScores(cards, cardScores);
-	fillCardCounts(0, cardScores, countCard);
 
-	for (auto i = 0; i < cards.size(); i++)
-	{
-		sum += cardScores[i] * countCard[i];
-	}
+	auto i = 0;
+
+	std::ranges::for_each(cardScores.cbegin(), cardScores.cend(), [&]([[maybe_unused]] int val) {
+			fillCardCounts(i, cardScores, countCard);
+			i++;
+		});
+
+	int sum = std::accumulate(countCard.cbegin(), countCard.cend(), 0);
 
 	return sum;
 }

@@ -6,6 +6,7 @@
 #include "./day02/day02solver.h"
 #include "./day03/day03solver.h"
 #include "./day04/day04solver.h"
+#include "./day05/day05solver.h"
 #include <iostream>
 
 static int s_AllocationCount = 0;
@@ -36,8 +37,8 @@ void Run(const std::function<T(const input_format&)>& solution, std::string id, 
 
 void print_solution(const std::string& day, const std::string& part, int solution)
 {
-	std::cout << "Solution day " << day << " part " << part << ": " << std::endl;
-	std::cout << solution << std::endl << std::endl;
+	std::cout << "Solution day " << day << " part " << part << ":\n";
+	std::cout << solution << "\n\n";
 }
 
 void solveDay01(const input_format& input)
@@ -87,6 +88,18 @@ void solveDay04Part1(const input_format& input)
 	print_solution("4", "1", solution);
 }
 
+void solveDay04Part2(const input_format& input)
+{
+	auto solution = SolveDay04Part2(input);
+	print_solution("4", "2", solution);
+}
+
+void solveDay05Part1(const input_format& input)
+{
+	auto solution = SolveDay05Part1(input);
+	print_solution("5", "1", solution);
+}
+
 void main()
 {
 	Run<void>(solveDay01, "01");
@@ -96,6 +109,8 @@ void main()
 	Run<void>(solveDay03Part1, "03", ' ');
 	Run<void>(solveDay03Part2, "03", ' ');
 	Run<void>(solveDay04Part1, "04", ':');
+	Run<void>(solveDay04Part2, "04", ':');
+	Run<void>(solveDay05Part1, "05", ' ');
 
 	std::cout << "Allocation Count " << s_AllocationCount << std::endl;
 	std::cout << "Allocation size " << s_AllocationSize << " bytes" << std::endl;
