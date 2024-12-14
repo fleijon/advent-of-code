@@ -148,10 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="day01\day01solver.cpp" />
+    <ClCompile Include="day02\day02solver.cpp" />
     <ClCompile Include="utils\preprocess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="day01\day01solver.h" />
+    <ClInclude Include="day02\day02solver.h" />
     <ClInclude Include="utils\preprocess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

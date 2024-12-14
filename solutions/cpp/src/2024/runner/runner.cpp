@@ -4,6 +4,7 @@
 
 #include "./utils/preprocess.h"
 #include "./day01/day01solver.h"
+#include "./day02/day02solver.h"
 
 static int s_AllocationCount = 0;
 static int s_AllocationSize = 0;
@@ -62,9 +63,19 @@ void solveDay01(const input_format& input)
 	print_solution("1", "2", solution2);
 }
 
+void solveDay02(const input_format& input)
+{
+	auto solution = day02_part1_find_solution(input);
+	print_solution("2", "1", solution);
+
+	auto solution2 = day02_part2_find_solution(input);
+	print_solution("2", "2", solution2);
+}
+
 int main()
 {
 	Run<void>(solveDay01, "01", "   ");
+	Run<void>(solveDay02, "02", " ");
 
 	std::cout << "Allocation Count " << s_AllocationCount << std::endl;
 	std::cout << "Allocation size " << s_AllocationSize << " bytes" << std::endl;

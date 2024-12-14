@@ -21,12 +21,18 @@
     <ClCompile Include="utils\preprocess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="day02\day02solver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="day01\day01solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils\preprocess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day02\day02solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
