@@ -24,6 +24,9 @@
     <ClCompile Include="day02\day02solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="day03\day03solver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="day01\day01solver.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="day02\day02solver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day03\day03solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
