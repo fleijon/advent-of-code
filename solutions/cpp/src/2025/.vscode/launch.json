@@ -1,0 +1,43 @@
+{
+  // ========================================================================
+  // VS Code Debug Configurations
+  // ========================================================================
+  // These configurations enable debugging your C++ code.
+  // To start debugging, press F5 or use Run > Start Debugging
+  //
+  // Note: You'll need the C++ debugger extension installed:
+  // On Linux: ms-vscode.cpptools or CodeLLDB
+  // On Windows: ms-vscode.cpptools or ms-vscode.cpptools-extension-pack
+
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // ====================================================================
+      // GDB Configuration for Linux
+      // ====================================================================
+      // This configuration debugs using GDB (GNU Debugger) on Linux.
+      // Install GDB: sudo apt install gdb
+
+      "name": "GDB: Debug Tests (Linux)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/logic.tests",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "sourceLanguages": ["cpp"],
+      "preLaunchTask": "CMake: Build"
+    },
+    {
+      "name": "GDB: Debug Runner (Linux)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/runner",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "sourceLanguages": ["cpp"],
+      "preLaunchTask": "CMake: Build"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  // ========================================================================
+  // VS Code Settings for CMake C++ Development
+  // ========================================================================
+  // These settings configure the CMake extension and C++ development
+  // environment for this Advent of Code 2025 project.
+
+  // CMake Configuration
+  // The "cmake.configureOnOpen" setting automatically runs CMake configure
+  // when you open the workspace. This ensures your build is always up-to-date.
+  "cmake.configureOnOpen": true,
+
+  // "cmake.sourceDirectory" specifies where the root CMakeLists.txt is located.
+  // This is important for the CMake extension to find your project.
+  "cmake.sourceDirectory": "${workspaceFolder}",
+
+  // "cmake.buildDirectory" specifies where CMake will generate build files.
+  // We use a preset-based approach, so this is overridden by CMakePresets.json
+  "cmake.buildDirectory": "${workspaceFolder}/cmake_build_${buildPresetName}",
+
+  // "cmake.generator" specifies the build system generator.
+  // On Linux with clang, we use Ninja for fast builds (install with: apt install ninja-build).
+  // On Windows, the preset uses Visual Studio.
+  // The generator can be overridden per-preset in CMakePresets.json
+  "cmake.generator": "Ninja",
+
+  // "cmake.preferredGenerators" lists generators in order of preference.
+  // CMake will use the first available one.
+  "cmake.preferredGenerators": [
+    "Ninja",
+    "Unix Makefiles",
+    "Visual Studio 17 2022"
+  ],
+
+  // "cmake.cmakePresets" specifies which presets from CMakePresets.json to use.
+  // We use the platform-specific presets defined in CMakePresets.json.
+  // The extension automatically selects appropriate ones for your OS.
+
+  // "cmake.parallelJobs" controls parallel compilation.
+  // Set to 0 to use the number of CPU cores available.
+  "cmake.parallelJobs": 0,
+
+  // "cmake.showOptionsMovedNotification" suppresses a notification about settings
+  // that have moved. Set to false to reduce clutter.
+  "cmake.showOptionsMovedNotification": false,
+
+  // C++ IntelliSense and Analysis
+  // These settings configure the C++ language server (Pylance/IntelliSense)
+
+  // "C_Cpp.intelliSenseEngine" specifies the language server for C++ analysis.
+  // "default" uses the bundled Microsoft IntelliSense engine.
+  // "Tag Parser" is an alternative, faster parser but less accurate.
+  "C_Cpp.intelliSenseEngine": "default",
+
+  // "C_Cpp.codeAnalysis.runAutomatically" enables automatic code analysis
+  // as you type. This helps catch errors early.
+  "C_Cpp.codeAnalysis.runAutomatically": true,
+
+  // "C_Cpp.codeAnalysis.clangTidy.enabled" enables Clang Tidy static analysis
+  // if clang-tidy is installed on your system.
+  // Install: apt install clang-tools
+  "C_Cpp.codeAnalysis.clangTidy.enabled": false,
+
+  // "C_Cpp.clang_format_style" specifies code formatting style.
+  // LLVM is a popular style, or use "Google" for Google's C++ style guide.
+  "C_Cpp.clang_format_style": "LLVM",
+
+  // "C_Cpp.default.compilerPath" specifies the path to your C++ compiler.
+  // On Ubuntu with clang: /usr/bin/clang++
+  // This is used for IntelliSense, not for actual compilation.
+  "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+
+  // "C_Cpp.default.cppStandard" specifies the C++ standard for IntelliSense.
+  // Must match the CMAKE_CXX_STANDARD in your CMakeLists.txt (currently C++23).
+  "C_Cpp.default.cppStandard": "c++23",
+
+  // "C_Cpp.default.includePath" specifies additional include directories for IntelliSense.
+  // These are automatically discovered from CMake, but can be supplemented here.
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/logic",
+    "${workspaceFolder}/logic/utils",
+    "${workspaceFolder}/logic.tests"
+  ],
+
+  // Editor Settings
+  // These improve the coding experience in VS Code
+
+  // "editor.formatOnSave" automatically formats your code when you save.
+  // Requires a formatter extension (e.g., C++ extension or clang-format).
+  "editor.formatOnSave": true,
+
+  // "editor.defaultFormatter" specifies which extension provides formatting.
+  // We rely on clang-format via the C++ extension for formatting.
+  // This can be customized based on your preferred formatter.
+
+  // "editor.rulers" shows vertical rulers at specified column positions.
+  // Helps maintain line length guidelines (80 and 120 characters are common).
+  "editor.rulers": [80, 120],
+
+  // "editor.wordWrap" enables word wrapping for long lines.
+  // "on" wraps lines in the editor display (doesn't affect file).
+  "editor.wordWrap": "on",
+
+  // "files.associations" tells VS Code how to treat certain file types.
+  // This ensures .h files are recognized as C++ headers.
+  "files.associations": {
+    "*.h": "cpp",
+    "*.hpp": "cpp"
+  },
+
+  // "files.exclude" hides files/folders from the Explorer panel.
+  // This reduces clutter from build artifacts and IDE files.
+  "files.exclude": {
+    "cmake_build_*/**": true,
+    ".git/**": false,
+    "**/__pycache__": true
+  },
+
+  // Search Settings
+  // "search.exclude" prevents searching inside certain directories/files.
+  // This speeds up searches and reduces noise from build artifacts.
+  "search.exclude": {
+    "cmake_build_*": true,
+    ".git": true,
+    "node_modules": true
+  },
+
+  // Terminal Settings
+  // These configure the integrated terminal in VS Code
+
+  // "terminal.integrated.defaultProfile.linux" specifies the default shell on Linux.
+  // "bash" is the standard shell on most Linux distributions.
+  "terminal.integrated.defaultProfile.linux": "bash",
+
+  // "terminal.integrated.shellArgs.linux" passes arguments to the shell.
+  // Using --login ensures your shell profile is loaded (.bashrc, .bash_profile).
+  "terminal.integrated.shellArgs.linux": ["--login"]
+}

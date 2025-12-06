@@ -1,0 +1,138 @@
+{
+  // ========================================================================
+  // VS Code Tasks for CMake C++ Project
+  // ========================================================================
+  // Tasks define custom commands that can be run from VS Code's Task Runner.
+  // Access with: Ctrl+Shift+B (build) or Ctrl+Shift+P > Tasks: Run Task
+  // These tasks use CMake presets to handle platform-specific build logic.
+
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // ====================================================================
+      // Configure Task
+      // ====================================================================
+      // This task runs CMake's configure step, generating build files.
+      // The configure preset is automatically selected based on your OS.
+      // On Linux: Uses clang-linux-debug preset
+      // On Windows: Uses msvc-windows-debug preset
+
+      "label": "CMake: Configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--preset",
+        "${default}",  // Automatically uses the "default" preset for your OS
+        "-S",
+        "${workspaceFolder}",
+        "-B",
+        "${workspaceFolder}/cmake_build_${buildPresetName}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      // ====================================================================
+      // Build Task
+      // ====================================================================
+      // This task compiles the project using the selected CMake preset.
+      // It's set as the default build task (Ctrl+Shift+B will run this).
+
+      "label": "CMake: Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "--config",
+        "${buildType}",
+        "-j",
+        "4"  // Use 4 parallel jobs
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true  // This runs when you press Ctrl+Shift+B
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      // ====================================================================
+      // Test Task
+      // ====================================================================
+      // This task runs the test suite using CTest.
+      // It executes all tests defined in your test.cpp file.
+
+      "label": "CMake: Test",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "--target",
+        "RUN_TESTS"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "dependsOn": ["CMake: Build"]
+    },
+    {
+      // ====================================================================
+      // Clean Task
+      // ====================================================================
+      // This task removes all build artifacts, forcing a clean rebuild.
+      // Useful if you encounter strange build errors or want a fresh start.
+
+      "label": "CMake: Clean",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "--target",
+        "clean"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      // ====================================================================
+      // Run Runner Task
+      // ====================================================================
+      // This task builds and then runs the main console application.
+      // The executable path varies by OS and build type.
+
+      "label": "CMake: Run",
+      "type": "shell",
+      "command": "${workspaceFolder}/cmake_build_${buildPresetName}/bin/runner",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "dependsOn": ["CMake: Build"]
+    }
+  ]
+}

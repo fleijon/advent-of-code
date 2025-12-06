@@ -1,0 +1,143 @@
+{
+  "version": 6,
+  "vendor": {
+    "aoc": {
+      "autoFormat": true
+    }
+  },
+  "configurePresets": [
+    {
+      "name": "default-base",
+      "description": "Base configuration shared by all presets",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/cmake_build_${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "clang-linux-debug",
+      "displayName": "Clang Debug (Linux)",
+      "description": "Debug build using clang compiler on Linux/Ubuntu",
+      "inherits": "default-base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_COMPILER": "clang"
+      }
+    },
+    {
+      "name": "clang-linux-release",
+      "displayName": "Clang Release (Linux)",
+      "description": "Release build using clang compiler on Linux/Ubuntu with optimizations",
+      "inherits": "default-base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_COMPILER": "clang"
+      }
+    },
+    {
+      "name": "msvc-windows-debug",
+      "displayName": "MSVC Debug (Windows)",
+      "description": "Debug build using Microsoft Visual C++ compiler on Windows",
+      "inherits": "default-base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "generator": "Visual Studio 17 2022",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "msvc-windows-release",
+      "displayName": "MSVC Release (Windows)",
+      "description": "Release build using Microsoft Visual C++ compiler on Windows with optimizations",
+      "inherits": "default-base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "generator": "Visual Studio 17 2022",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "clang-linux-debug-build",
+      "displayName": "Build Debug (Linux)",
+      "configurePreset": "clang-linux-debug",
+      "jobs": 4,
+      "targets": ["all"]
+    },
+    {
+      "name": "clang-linux-release-build",
+      "displayName": "Build Release (Linux)",
+      "configurePreset": "clang-linux-release",
+      "jobs": 4,
+      "targets": ["all"]
+    },
+    {
+      "name": "msvc-windows-debug-build",
+      "displayName": "Build Debug (Windows)",
+      "configurePreset": "msvc-windows-debug",
+      "targets": ["ALL_BUILD"]
+    },
+    {
+      "name": "msvc-windows-release-build",
+      "displayName": "Build Release (Windows)",
+      "configurePreset": "msvc-windows-release",
+      "targets": ["ALL_BUILD"]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "clang-linux-debug-test",
+      "displayName": "Test Debug (Linux)",
+      "configurePreset": "clang-linux-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "clang-linux-release-test",
+      "displayName": "Test Release (Linux)",
+      "configurePreset": "clang-linux-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "msvc-windows-debug-test",
+      "displayName": "Test Debug (Windows)",
+      "configurePreset": "msvc-windows-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "msvc-windows-release-test",
+      "displayName": "Test Release (Windows)",
+      "configurePreset": "msvc-windows-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+================================================================================
+  ADVENT OF CODE 2025 - CMAKE C++ PROJECT SETUP COMPLETE
+================================================================================
+
+✓ Project structure created with modern CMake (3.20+)
+✓ Cross-platform support: Ubuntu/Linux (clang) and Windows (MSVC)
+✓ Google Test framework integrated via FetchContent
+✓ Precompiled headers (PCH) configured for faster builds
+✓ VS Code integration with build tasks, debugging, and intellisense
+✓ Comprehensive README.md documentation included
+
+================================================================================
+  QUICK START
+================================================================================
+
+1. CONFIGURE THE PROJECT:
+   cmake --preset clang-linux-debug
+
+2. BUILD ALL TARGETS:
+   cmake --build cmake_build_clang-linux-debug
+
+3. RUN TESTS:
+   ./cmake_build_clang-linux-debug/bin/logic.tests
+
+4. RUN SOLVER:
+   ./cmake_build_clang-linux-debug/bin/runner
+
+5. IN VS CODE:
+   - Press Ctrl+Shift+B to build
+   - Press F5 to debug
+   - Cmd+Shift+P > "CMake: Run Tests" to test
+   - Cmd+Shift+P > "Tasks: Run Task" to see available tasks
+
+================================================================================
+  BUILD PRESETS AVAILABLE
+================================================================================
+
+Linux:
+  - clang-linux-debug       : Debug build with clang
+  - clang-linux-release     : Release build with clang
+
+Windows:
+  - msvc-windows-debug      : Debug build with MSVC
+  - msvc-windows-release    : Release build with MSVC
+
+================================================================================
+  PROJECT COMPONENTS
+================================================================================
+
+logic/
+  ├── Core solver library (static lib)
+  ├── day01/day01solver.cpp|h  (template for new days)
+  └── utils/preprocess.cpp|h  (file I/O, string utilities)
+
+logic.tests/
+  ├── Google Test test runner
+  ├── pch.h|cpp  (precompiled headers)
+  └── test.cpp  (test cases)
+
+runner/
+  └── Console application executable
+
+.vscode/
+  ├── settings.json   (CMake & editor configuration)
+  ├── tasks.json      (build, test, clean tasks)
+  └── launch.json     (debugger configurations)
+
+================================================================================
+  BUILD ARTIFACTS
+================================================================================
+
+cmake_build_clang-linux-debug/
+  ├── bin/
+  │   ├── logic.tests (test executable, 2.6MB)
+  │   └── runner (main app, 30KB)
+  ├── lib/
+  │   ├── liblogic.a (solver library, 155KB)
+  │   ├── libgtest*.a (google test libs, 4.1MB total)
+  │   └── ... (other build artifacts)
+  └── _deps/ (fetched dependencies)
+
+================================================================================
+  NEXT STEPS
+================================================================================
+
+1. Read README.md for comprehensive documentation
+
+2. When ready to solve Day 1:
+   - Create example.1.txt in resources/2025/01/
+   - Implement day01_part1_find_solution() and day01_part2_find_solution()
+   - Add test cases in logic.tests/test.cpp
+   - Run tests to verify
+
+3. For Day 2, follow the pattern in README.md:
+   - Create logic/day02/day02solver.h|cpp
+   - Add sources to logic/CMakeLists.txt
+   - Create tests in logic.tests/test.cpp
+   - Rebuild with: cmake --build cmake_build_clang-linux-debug
+
+================================================================================
+  TROUBLESHOOTING
+================================================================================
+
+If build fails:
+  rm -rf cmake_build_clang-linux-debug
+  cmake --preset clang-linux-debug
+  cmake --build cmake_build_clang-linux-debug
+
+If tests don't run:
+  - Verify gdb is installed: sudo apt install gdb
+  - Check input files exist in resources/2025/*/
+
+If VS Code doesn't recognize CMake:
+  - Install C++ Extension Pack (ms-vscode.cpptools-extension-pack)
+  - Install CMake Tools (ms-vscode.cmake-tools)
+  - Reload VS Code window
+
+================================================================================
