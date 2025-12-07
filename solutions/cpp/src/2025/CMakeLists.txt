@@ -11,8 +11,8 @@ project(AoC2025
     DESCRIPTION "Advent of Code 2025 - C++ Solutions"
     LANGUAGES CXX)
 
-# Set C++ standard to C++23 for modern features (modules, ranges, std::print, etc.)
-set(CMAKE_CXX_STANDARD 23)
+# Set C++ standard to C++17 for modern features (structured bindings, std::optional, ranges, etc.)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)  # Disable compiler-specific extensions for portability
 
@@ -32,6 +32,7 @@ else()
     # Clang/GCC compiler settings (Linux, macOS)
     add_compile_options(-Wall -Wextra -Wpedantic)  # Enable many warnings
     add_compile_options(-Werror)  # Treat warnings as errors
+    add_compile_options(-g)  # Include debug symbols for debugging
 endif()
 
 # ============================================================================

@@ -13,12 +13,12 @@
   "configurations": [
     {
       // ====================================================================
-      // GDB Configuration for Linux
+      // LLDB Configuration for All Tests
       // ====================================================================
-      // This configuration debugs using GDB (GNU Debugger) on Linux.
-      // Install GDB: sudo apt install gdb
+      // This configuration debugs using LLDB on Linux with clang.
+      // Requires CodeLLDB VS Code extension: vadimcn.vscode-lldb
 
-      "name": "GDB: Debug Tests (Linux)",
+      "name": "Debug: All Tests",
       "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/logic.tests",
@@ -26,10 +26,28 @@
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "sourceLanguages": ["cpp"],
+      "preLaunchTask": "CMake: Build",
+      "sourceMap": {}
+    },
+    {
+      // ====================================================================
+      // LLDB Configuration for Specific Test
+      // ====================================================================
+      // Debug a specific test: day01, part1_example
+      // Change the test name in the args to debug different tests
+
+      "name": "Debug: day01::part1_example",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/logic.tests",
+      "args": ["--gtest_filter=day01.part1_example"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "sourceLanguages": ["cpp"],
       "preLaunchTask": "CMake: Build"
     },
     {
-      "name": "GDB: Debug Runner (Linux)",
+      "name": "Debug: Runner",
       "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/runner",

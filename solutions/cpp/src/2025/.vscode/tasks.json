@@ -22,11 +22,11 @@
       "command": "cmake",
       "args": [
         "--preset",
-        "${default}",  // Automatically uses the "default" preset for your OS
+        "clang-linux-debug",
         "-S",
         "${workspaceFolder}",
         "-B",
-        "${workspaceFolder}/cmake_build_${buildPresetName}"
+        "${workspaceFolder}/cmake_build_clang-linux-debug"
       ],
       "group": {
         "kind": "build",
@@ -50,9 +50,9 @@
       "command": "cmake",
       "args": [
         "--build",
-        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "${workspaceFolder}/cmake_build_clang-linux-debug",
         "--config",
-        "${buildType}",
+        "Debug",
         "-j",
         "4"  // Use 4 parallel jobs
       ],
@@ -78,7 +78,7 @@
       "command": "cmake",
       "args": [
         "--build",
-        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "${workspaceFolder}/cmake_build_clang-linux-debug",
         "--target",
         "RUN_TESTS"
       ],
@@ -105,7 +105,7 @@
       "command": "cmake",
       "args": [
         "--build",
-        "${workspaceFolder}/cmake_build_${buildPresetName}",
+        "${workspaceFolder}/cmake_build_clang-linux-debug",
         "--target",
         "clean"
       ],
@@ -125,7 +125,7 @@
 
       "label": "CMake: Run",
       "type": "shell",
-      "command": "${workspaceFolder}/cmake_build_${buildPresetName}/bin/runner",
+      "command": "${workspaceFolder}/cmake_build_clang-linux-debug/bin/runner",
       "group": "build",
       "problemMatcher": [],
       "presentation": {
